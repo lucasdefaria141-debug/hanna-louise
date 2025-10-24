@@ -1,4 +1,14 @@
-const texto = `Oii polaca, tudo bem? Acabei que atrasei seu presente mais cá estou eu, já temos um tempo que se conhecemos e cada dia que passa fico mais interessado em saber mais sobre você, por mais que não estamos conversando muito ultimamente saiba que te amo viu? Pensei muito a há um tempo comigo, querendo ou não essa é uma palavra muito forte pra mim e acredito que você merece escutar isso de mim, tenho um carinho absurdo por você, só não te mando mensagens com mais frequência porque penso que estou te atrapalhando, mas sem brincadeira, você me deixa entretido sabe? É uma pessoa que adoro passar um tempo conversando e jogando, sinto saudades da BECKS e muita kkkkkk. Perdão pelo presente atrasado mais eu fiz, e como você já tinha me dito "não gosto de comemorar meu aniversário", mas agora vai gostar, é o dia do seu nascimento, o dia em que essa pessoa incrível veio ao mundo, enquanto você estiver comigo, vamos comemorar essa data incrível, independente das coisas que estão acontecendo na sua vida, tudo vai dar certo sabe porque? Porque você tem a vontade de fazer as coisas acontecerem, eu ia falar pra você curtir seu dia mas todo dia é seu dia, viva sua vida ok? Um beijo e um abraço beeem apertado do Lucão, te amo Polaca azeda!`;
+const texto = `Oii Polaca, tudo bem?
+Acabei atrasando seu presente, mas cá estou! Já faz um tempo que nos conhecemos e, a cada dia, fico mais interessado em descobrir mais sobre você.
+Mesmo que não estejamos conversando muito ultimamente, saiba que eu te amo, viu?
+Pensei bastante sobre isso e, querendo ou não, essa é uma palavra muito forte para mim. Acredito que você merece ouvir isso de mim.
+Tenho um carinho enorme por você. Só não te mando mensagens com mais frequência porque penso que posso estar te atrapalhando.
+Mas, sem brincadeira, você me deixa entretido! Adoro passar um tempo conversando e jogando com você, sinto saudades da BECKS e… muita kkkkk.
+Perdão pelo presente atrasado, mas eu fiz com todo o meu carinho.
+E mesmo você me dizendo “não gosto de comemorar meu aniversário”, agora você vai gostar! Afinal, é o dia do seu nascimento, o dia em que essa pessoa incrível veio ao mundo.
+Enquanto você estiver comigo, vamos celebrar essa data maravilhosa, independentemente das coisas acontecendo na sua vida. Tudo vai dar certo, sabe por quê? Porque você tem a vontade de fazer as coisas acontecerem.
+Eu poderia dizer “curta seu dia”, mas todo dia é seu dia. Viva sua vida!
+Um beijo e um abraço bem apertado do Lucão. Te amo, Polaca azeda! 🩵`;
 
 const msgEl = document.getElementById('mensagem');
 const foto = document.getElementById('foto');
