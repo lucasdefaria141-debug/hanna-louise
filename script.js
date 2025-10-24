@@ -1,4 +1,4 @@
-const texto = `Oii Polaca, tudo bem?
+const mensagem = `Oii Polaca, tudo bem?
 Acabei atrasando seu presente, mas cá estou! Já faz um tempo que nos conhecemos e, a cada dia, fico mais interessado em descobrir mais sobre você.
 Mesmo que não estejamos conversando muito ultimamente, saiba que eu te amo, viu?
 Pensei bastante sobre isso e, querendo ou não, essa é uma palavra muito forte para mim. Acredito que você merece ouvir isso de mim.
@@ -10,67 +10,78 @@ Enquanto você estiver comigo, vamos celebrar essa data maravilhosa, independent
 Eu poderia dizer “curta seu dia”, mas todo dia é seu dia. Viva sua vida!
 Um beijo e um abraço bem apertado do Lucão. Te amo, Polaca azeda! 🩵`;
 
-const msgEl = document.getElementById('mensagem');
+const textoElemento = document.getElementById('mensagem');
 const foto = document.getElementById('foto');
-const replay = document.getElementById('replay');
-let i = 0;
+const replayBtn = document.getElementById('replay');
 
-function digitar() {
-  if (i < texto.length) {
-    msgEl.textContent += texto.charAt(i);
-    i++;
-    setTimeout(digitar, 35);
+let index = 0;
+let speed = 60; // velocidade mais lenta
+
+function digitarTexto() {
+  if (index < mensagem.length) {
+    textoElemento.innerHTML += mensagem.charAt(index);
+    index++;
+    setTimeout(digitarTexto, speed);
   } else {
     foto.style.display = 'block';
   }
 }
 
-replay.addEventListener('click', () => {
-  i = 0;
-  msgEl.textContent = '';
+replayBtn.addEventListener('click', () => {
+  index = 0;
+  textoElemento.innerHTML = '';
   foto.style.display = 'none';
-  digitar();
+  digitarTexto();
 });
 
-digitar();
-
-// Fundo animado
+// Fundo animado com linhas vermelhas e corações
 const canvas = document.getElementById('fundo');
 const ctx = canvas.getContext('2d');
-canvas.width = innerWidth;
-canvas.height = innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-let hearts = [];
-let t = 0;
-
-function drawBackground() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  ctx.strokeStyle = 'rgba(255,0,0,0.3)';
-  ctx.beginPath();
-  for (let x = 0; x < canvas.width; x += 20) {
-    let y = Math.sin((x + t) * 0.02) * 30 + canvas.height / 2;
-    ctx.lineTo(x, y);
-  }
-  ctx.stroke();
-
-  hearts.forEach((h, index) => {
-    h.y += h.speed;
-    if (h.y > canvas.height) hearts.splice(index, 1);
-    ctx.fillStyle = 'rgba(255,50,50,0.8)';
-    ctx.beginPath();
-    ctx.moveTo(h.x, h.y);
-    ctx.bezierCurveTo(h.x - 3, h.y - 5, h.x - 8, h.y + 5, h.x, h.y + 10);
-    ctx.bezierCurveTo(h.x + 8, h.y + 5, h.x + 3, h.y - 5, h.x, h.y);
-    ctx.fill();
-  });
-
-  if (Math.random() < 0.05) {
-    hearts.push({ x: Math.random() * canvas.width, y: -10, speed: 1 + Math.random() * 1.5 });
-  }
-
-  t += 2;
-  requestAnimationFrame(drawBackground);
+function Linha(x, y, speed, length) {
+  this.x = x;
+  this.y = y;
+  this.speed = speed;
+  this.length = length;
 }
 
-drawBackground();
+const linhas = [];
+for (let i = 0; i < 50; i++) {
+  linhas.push(new Linha(Math.random()*canvas.width, Math.random()*canvas.height, Math.random()*2+1, Math.random()*100+50));
+}
+
+function animarFundo() {
+  ctx.fillStyle = 'black';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Linhas vermelhas
+  ctx.strokeStyle = 'red';
+  ctx.lineWidth = 1;
+  linhas.forEach(l => {
+    ctx.beginPath();
+    ctx.moveTo(l.x, l.y);
+    ctx.lineTo(l.x, l.y + l.length);
+    ctx.stroke();
+    l.y += l.speed;
+    if (l.y > canvas.height) l.y = -l.length;
+  });
+
+  // Corações
+  for (let i = 0; i < 10; i++) {
+    ctx.fillStyle = 'rgba(255,0,0,0.5)';
+    let x = Math.random()*canvas.width;
+    let y = Math.random()*canvas.height;
+    let size = Math.random()*20+10;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.arc(x, y, size/2, 0, Math.PI*2);
+    ctx.fill();
+  }
+
+  requestAnimationFrame(animarFundo);
+}
+
+digitarTexto();
+animarFundo();
